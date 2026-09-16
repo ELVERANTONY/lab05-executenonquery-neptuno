@@ -98,10 +98,22 @@
     <Style Selector="DataGridRow:pointerover">
       <Setter Property="Background" Value="#F1F5F9"/>
     </Style>
+    
+    <!-- Selección Elegante: Fondo Teal oscuro con texto blanco nítido -->
     <Style Selector="DataGridRow:selected">
-      <Setter Property="Background" Value="#E6FFFA"/>
-      <Setter Property="Foreground" Value="#0F766E"/>
+      <Setter Property="Background" Value="#0F766E"/>
+      <Setter Property="Foreground" Value="#FFFFFF"/>
     </Style>
+    <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
+      <Setter Property="Fill" Value="#0F766E"/>
+    </Style>
+    <Style Selector="DataGridRow:selected TextBlock">
+      <Setter Property="Foreground" Value="#FFFFFF"/>
+    </Style>
+    <Style Selector="DataGridRow:selected DataGridCell">
+      <Setter Property="Foreground" Value="#FFFFFF"/>
+    </Style>
+
     <Style Selector="DataGridCell">
       <Setter Property="Padding" Value="14,9"/>
       <Setter Property="VerticalContentAlignment" Value="Center"/>
