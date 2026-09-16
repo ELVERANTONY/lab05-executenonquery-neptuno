@@ -1,0 +1,146 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NeptunoApp.App"
+             RequestedThemeVariant="Light">
+  <Application.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
+    
+    <!-- Botones -->
+    <Style Selector="Button.primary">
+      <Setter Property="Background" Value="#0F766E"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="16,9"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style Selector="Button.orange">
+      <Setter Property="Background" Value="#F97316"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="16,9"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style Selector="Button.danger">
+      <Setter Property="Background" Value="#DC2626"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="16,9"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
+    <!-- Campos de Entrada Globales -->
+    <Style Selector="TextBox">
+      <Setter Property="MinHeight" Value="38"/>
+      <Setter Property="CornerRadius" Value="7"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="BorderThickness" Value="1.2"/>
+      <Setter Property="Padding" Value="10,7"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+    </Style>
+    <Style Selector="TextBox:focus">
+      <Setter Property="BorderBrush" Value="#0F766E"/>
+    </Style>
+
+    <Style Selector="ComboBox">
+      <Setter Property="MinHeight" Value="38"/>
+      <Setter Property="CornerRadius" Value="7"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="BorderThickness" Value="1.2"/>
+      <Setter Property="Padding" Value="10,6"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+    <Style Selector="ComboBox:focus">
+      <Setter Property="BorderBrush" Value="#0F766E"/>
+    </Style>
+
+    <Style Selector="NumericUpDown">
+      <Setter Property="MinHeight" Value="38"/>
+      <Setter Property="CornerRadius" Value="7"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="BorderThickness" Value="1.2"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style Selector="DatePicker">
+      <Setter Property="MinHeight" Value="38"/>
+      <Setter Property="CornerRadius" Value="7"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="BorderThickness" Value="1.2"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+    </Style>
+
+    <!-- Tablas DataGrid Profesionales y Modernas -->
+    <Style Selector="DataGrid">
+      <Setter Property="HeadersVisibility" Value="Column"/>
+      <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+      <Setter Property="HorizontalGridLinesBrush" Value="#F1F5F9"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="RowBackground" Value="#FFFFFF"/>
+    </Style>
+    <Style Selector="DataGridColumnHeader">
+      <Setter Property="Background" Value="#F8FAFC"/>
+      <Setter Property="Foreground" Value="#475569"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Padding" Value="14,11"/>
+      <Setter Property="BorderBrush" Value="#E2E8F0"/>
+      <Setter Property="BorderThickness" Value="0,0,0,1.5"/>
+    </Style>
+    <Style Selector="DataGridRow:nth-child(even)">
+      <Setter Property="Background" Value="#FAFAFA"/>
+    </Style>
+    <Style Selector="DataGridRow:pointerover">
+      <Setter Property="Background" Value="#F1F5F9"/>
+    </Style>
+    <Style Selector="DataGridRow:selected">
+      <Setter Property="Background" Value="#E6FFFA"/>
+      <Setter Property="Foreground" Value="#0F766E"/>
+    </Style>
+    <Style Selector="DataGridCell">
+      <Setter Property="Padding" Value="14,9"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Navegación lateral -->
+    <Style Selector="Button.nav">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Foreground" Value="#E2E8F0"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="HorizontalContentAlignment" Value="Left"/>
+      <Setter Property="Padding" Value="14,11"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="Button.nav.active">
+      <Setter Property="Background" Value="#0F766E"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="Button.nav:pointerover">
+      <Setter Property="Background" Value="#134E4A"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="Button.nav:pressed">
+      <Setter Property="Background" Value="#115E59"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="Button.nav:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#134E4A"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="Button.nav:pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="#115E59"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="Button.nav.active /template/ ContentPresenter">
+      <Setter Property="Background" Value="#0F766E"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+  </Application.Styles>
+</Application>
