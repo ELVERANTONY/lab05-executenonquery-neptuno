@@ -70,12 +70,9 @@
 
         </StackPanel>
 
-        <!-- Botón Inferior para Alternar Barra Lateral -->
-        <Button Grid.Row="3" Classes="nav" Command="{Binding AlternarBarraLateralCommand}" HorizontalAlignment="Stretch" ToolTip.Tip="Expandir / Contraer">
-          <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-            <PathIcon Data="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" Width="18" Height="18" Foreground="#94A3B8" VerticalAlignment="Center"/>
-            <TextBlock Text="Contraer menú" Margin="12,0,0,0" VerticalAlignment="Center" Foreground="#94A3B8" FontSize="12" IsVisible="{Binding BarraLateralExpandida}"/>
-          </StackPanel>
+        <!-- Botón Inferior para Alternar Barra Lateral (Solo Icono 3 Rayas) -->
+        <Button Grid.Row="3" Classes="nav" Command="{Binding AlternarBarraLateralCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" ToolTip.Tip="Expandir / Contraer menú" Padding="12,10">
+          <PathIcon Data="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" Width="20" Height="20" Foreground="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
       </Grid>
     </Border>
