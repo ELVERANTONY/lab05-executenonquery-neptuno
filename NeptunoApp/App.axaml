@@ -88,7 +88,7 @@
       <Setter Property="Foreground" Value="#475569"/>
       <Setter Property="FontWeight" Value="Bold"/>
       <Setter Property="FontSize" Value="12"/>
-      <Setter Property="Padding" Value="14,11"/>
+      <Setter Property="Padding" Value="10,10"/>
       <Setter Property="BorderBrush" Value="#E2E8F0"/>
       <Setter Property="BorderThickness" Value="0,0,0,1.5"/>
     </Style>
@@ -115,7 +115,7 @@
     </Style>
 
     <Style Selector="DataGridCell">
-      <Setter Property="Padding" Value="14,9"/>
+      <Setter Property="Padding" Value="10,8"/>
       <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 

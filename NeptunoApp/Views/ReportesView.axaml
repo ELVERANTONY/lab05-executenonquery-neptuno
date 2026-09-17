@@ -11,11 +11,11 @@
       <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*,Auto" ColumnSpacing="16" RowSpacing="10">
         <StackPanel Spacing="5">
           <TextBlock Text="Fecha inicial" Foreground="#334155" FontWeight="SemiBold"/>
-          <DatePicker SelectedDate="{Binding FechaInicio}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MMMM" YearFormat="yyyy"/>
+          <DatePicker SelectedDate="{Binding FechaInicio}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Spacing="5">
           <TextBlock Text="Fecha final" Foreground="#334155" FontWeight="SemiBold"/>
-          <DatePicker SelectedDate="{Binding FechaFin}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MMMM" YearFormat="yyyy"/>
+          <DatePicker SelectedDate="{Binding FechaFin}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
         </StackPanel>
         <Button Grid.Column="2" Classes="orange" Content="Consultar" Command="{Binding ConsultarCommand}" VerticalAlignment="Bottom" MinWidth="120" HorizontalContentAlignment="Center"/>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Mensaje}" Foreground="#0F766E" TextWrapping="Wrap" FontWeight="SemiBold"/>
@@ -31,13 +31,13 @@
           <DataGrid ItemsSource="{Binding Lineas}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" CanUserSortColumns="True" CanUserReorderColumns="False" HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
               <DataGridTextColumn Header="Pedido" Binding="{Binding PedidoID}" Width="75"/>
-              <DataGridTextColumn Header="Fecha" Binding="{Binding FechaPedido, StringFormat='{}{0:dd/MM/yyyy}'}" Width="110"/>
+              <DataGridTextColumn Header="Fecha" Binding="{Binding FechaPedido, StringFormat='{}{0:dd/MM/yyyy}'}" Width="120"/>
               <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="1.4*" MinWidth="180"/>
               <DataGridTextColumn Header="Producto" Binding="{Binding NombreProducto}" Width="1.4*" MinWidth="175"/>
-              <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnidad, StringFormat='S/ {0:N2}'}" Width="100"/>
-              <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="85"/>
-              <DataGridTextColumn Header="Descuento" Binding="{Binding Descuento, StringFormat='{}{0:P0}'}" Width="100"/>
-              <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat='S/ {0:N2}'}" Width="105"/>
+              <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnidad, StringFormat='S/ {0:N2}'}" Width="110"/>
+              <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="90"/>
+              <DataGridTextColumn Header="Descuento" Binding="{Binding Descuento, StringFormat='{}{0:P0}'}" Width="110"/>
+              <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat='S/ {0:N2}'}" Width="115"/>
             </DataGrid.Columns>
           </DataGrid>
         </Border>

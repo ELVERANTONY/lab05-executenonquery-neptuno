@@ -45,13 +45,13 @@
             </ComboBox>
 
             <TextBlock Text="Fecha del pedido *" FontWeight="SemiBold" Foreground="#334155" Margin="0,2,0,0"/>
-            <DatePicker SelectedDate="{Binding FechaPedido}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MMMM" YearFormat="yyyy"/>
+            <DatePicker SelectedDate="{Binding FechaPedido}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
 
             <TextBlock Text="Fecha requerida" FontWeight="SemiBold" Foreground="#334155" Margin="0,2,0,0"/>
-            <DatePicker SelectedDate="{Binding FechaRequerida}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MMMM" YearFormat="yyyy"/>
+            <DatePicker SelectedDate="{Binding FechaRequerida}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
 
             <TextBlock Text="Fecha de envío" FontWeight="SemiBold" Foreground="#334155" Margin="0,2,0,0"/>
-            <DatePicker SelectedDate="{Binding FechaEnvio}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MMMM" YearFormat="yyyy"/>
+            <DatePicker SelectedDate="{Binding FechaEnvio}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
 
             <TextBlock Text="Destinatario" FontWeight="SemiBold" Foreground="#334155"/>
             <TextBox Text="{Binding Destinatario}"/>
@@ -85,12 +85,12 @@
           <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" ClipToBounds="True">
             <DataGrid ItemsSource="{Binding Pedidos}" SelectedItem="{Binding Seleccionado}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" CanUserSortColumns="True" CanUserReorderColumns="False" HorizontalScrollBarVisibility="Auto">
               <DataGrid.Columns>
-                <DataGridTextColumn Header="Pedido" Binding="{Binding PedidoID}" Width="70"/>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding FechaPedido, StringFormat='{}{0:dd/MM/yyyy}'}" Width="110"/>
-                <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="1.4*" MinWidth="180"/>
-                <DataGridTextColumn Header="Empleado" Binding="{Binding NombreEmpleado}" Width="1.3*" MinWidth="160"/>
-                <DataGridTextColumn Header="Destino" Binding="{Binding CiudadDestino}" Width="1.0*" MinWidth="110"/>
-                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat='S/ {0:N2}'}" Width="110"/>
+                <DataGridTextColumn Header="Pedido" Binding="{Binding PedidoID}" Width="75"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding FechaPedido, StringFormat='{}{0:dd/MM/yyyy}'}" Width="120"/>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="1.5*" MinWidth="180"/>
+                <DataGridTextColumn Header="Empleado" Binding="{Binding NombreEmpleado}" Width="1.4*" MinWidth="170"/>
+                <DataGridTextColumn Header="Destino" Binding="{Binding CiudadDestino}" Width="1.0*" MinWidth="105"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat='S/ {0:N2}'}" Width="120"/>
               </DataGrid.Columns>
             </DataGrid>
           </Border>
