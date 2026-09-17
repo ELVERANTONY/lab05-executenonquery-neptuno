@@ -17,10 +17,7 @@ public partial class MainViewModel(
     public ReportesViewModel Reportes { get; } = reportes;
 
     [ObservableProperty] private string paginaActual = "Productos";
-    [ObservableProperty] private bool barraColapsada;
-
-    public double AnchoBarra => BarraColapsada ? 74 : 210;
-    public bool MostrarTextoBarra => !BarraColapsada;
+    [ObservableProperty] private bool barraLateralExpandida = true;
 
     public bool MostrarProductos => PaginaActual == "Productos";
     public bool MostrarCategorias => PaginaActual == "Categorias";
@@ -37,13 +34,8 @@ public partial class MainViewModel(
         OnPropertyChanged(nameof(MostrarReportes));
     }
 
-    partial void OnBarraColapsadaChanged(bool value)
-    {
-        OnPropertyChanged(nameof(AnchoBarra));
-        OnPropertyChanged(nameof(MostrarTextoBarra));
-    }
+    [RelayCommand] private void AlternarBarraLateral() => BarraLateralExpandida = !BarraLateralExpandida;
 
-    [RelayCommand] private void AlternarBarra() => BarraColapsada = !BarraColapsada;
     [RelayCommand] private void VerProductos() => PaginaActual = "Productos";
     [RelayCommand] private void VerCategorias() => PaginaActual = "Categorias";
     [RelayCommand] private void VerProveedores() => PaginaActual = "Proveedores";

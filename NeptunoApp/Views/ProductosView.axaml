@@ -8,11 +8,11 @@
       <Button Grid.Column="1" Classes="primary" Content="Actualizar" Command="{Binding CargarCommand}"/>
     </Grid>
 
-    <Grid Grid.Row="1" ColumnDefinitions="300,*" ColumnSpacing="16">
+    <Grid Grid.Row="1" ColumnDefinitions="330,*" ColumnSpacing="18">
       <!-- Tarjeta de Formulario -->
-      <Border Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="18">
+      <Border Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="20">
         <ScrollViewer>
-          <StackPanel Spacing="9">
+          <StackPanel Spacing="10">
             <TextBlock Text="Datos del producto" FontSize="18" FontWeight="Bold" Margin="0,0,0,4"/>
             
             <TextBlock Text="Nombre del producto *" FontWeight="SemiBold" Foreground="#334155"/>
