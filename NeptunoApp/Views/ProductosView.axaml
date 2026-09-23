@@ -1,0 +1,103 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:NeptunoApp.ViewModels" xmlns:m="using:NeptunoApp.Models" x:Class="NeptunoApp.Views.ProductosView" x:DataType="vm:ProductosViewModel">
+  <Grid RowDefinitions="Auto,*" Margin="20,22">
+    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,18">
+      <StackPanel>
+        <TextBlock Text="Mantenimiento de productos" FontSize="26" FontWeight="Bold"/>
+        <TextBlock Text="Catálogo, precios e inventario (con eliminación lógica)" Foreground="#64748B"/>
+      </StackPanel>
+      <Button Grid.Column="1" Classes="primary" Content="Actualizar" Command="{Binding CargarCommand}"/>
+    </Grid>
+
+    <Grid Grid.Row="1" ColumnDefinitions="330,*" ColumnSpacing="18">
+      <!-- Tarjeta de Formulario -->
+      <Border Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="20">
+        <ScrollViewer>
+          <StackPanel Spacing="10">
+            <TextBlock Text="Datos del producto" FontSize="18" FontWeight="Bold" Margin="0,0,0,4"/>
+            
+            <TextBlock Text="Nombre del producto *" FontWeight="SemiBold" Foreground="#334155"/>
+            <TextBox Text="{Binding NombreProducto}" MaxLength="60" PlaceholderText="Ej. Café Andino"/>
+
+            <TextBlock Text="Categoría *" FontWeight="SemiBold" Foreground="#334155"/>
+            <ComboBox ItemsSource="{Binding Categorias}" SelectedItem="{Binding CategoriaSeleccionada}" HorizontalAlignment="Stretch">
+              <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="m:Categoria">
+                  <TextBlock Text="{Binding NombreCategoria}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Proveedor *" FontWeight="SemiBold" Foreground="#334155"/>
+            <ComboBox ItemsSource="{Binding Proveedores}" SelectedItem="{Binding ProveedorSeleccionado}" HorizontalAlignment="Stretch">
+              <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="m:Proveedor">
+                  <TextBlock Text="{Binding CompaniaNombre}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Cantidad por unidad" FontWeight="SemiBold" Foreground="#334155"/>
+            <TextBox Text="{Binding CantidadPorUnidad}" PlaceholderText="Ej. 500 g"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+              <StackPanel Spacing="4">
+                <TextBlock Text="Precio S/" FontWeight="SemiBold" Foreground="#334155"/>
+                <NumericUpDown Value="{Binding PrecioUnidad}" Minimum="0" FormatString="0.00"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="Existencia" FontWeight="SemiBold" Foreground="#334155"/>
+                <NumericUpDown Value="{Binding UnidadesEnExistencia}" Minimum="0" Maximum="32767"/>
+              </StackPanel>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+              <StackPanel Spacing="4">
+                <TextBlock Text="En pedido" FontWeight="SemiBold" Foreground="#334155"/>
+                <NumericUpDown Value="{Binding UnidadesEnPedido}" Minimum="0" Maximum="32767"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="Reorden" FontWeight="SemiBold" Foreground="#334155"/>
+                <NumericUpDown Value="{Binding NivelDeReorden}" Minimum="0" Maximum="32767"/>
+              </StackPanel>
+            </Grid>
+
+            <CheckBox Content="Descontinuado" IsChecked="{Binding Descontinuado}" Margin="0,4,0,0"/>
+
+            <TextBlock Text="{Binding MensajeError}" Foreground="#DC2626" TextWrapping="Wrap" FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding MensajeExito}" Foreground="#0F766E" FontWeight="SemiBold"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,8,0,0">
+              <Button Content="Nuevo / Cancelar" Command="{Binding NuevoCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+              <Button Grid.Column="1" Classes="orange" Content="Guardar" Command="{Binding GuardarCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+            </Grid>
+          </StackPanel>
+        </ScrollViewer>
+      </Border>
+
+      <!-- Tarjeta de Tabla -->
+      <Border Grid.Column="1" Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="16">
+        <Grid RowDefinitions="Auto,*,Auto">
+          <ProgressBar IsIndeterminate="True" IsVisible="{Binding EstaCargando}" Margin="0,0,0,8"/>
+          
+          <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" ClipToBounds="True">
+            <DataGrid ItemsSource="{Binding Productos}" SelectedItem="{Binding ProductoSeleccionado}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" CanUserSortColumns="True" CanUserReorderColumns="False">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ProductoID}" Width="60"/>
+                <DataGridTextColumn Header="Producto" Binding="{Binding NombreProducto}" Width="1.8*" MinWidth="180"/>
+                <DataGridTextColumn Header="Categoría" Binding="{Binding NombreCategoria}" Width="1.2*" MinWidth="130"/>
+                <DataGridTextColumn Header="Proveedor" Binding="{Binding NombreProveedor}" Width="1.8*" MinWidth="190"/>
+                <DataGridTextColumn Header="Precio" Binding="{Binding PrecioUnidad, StringFormat='S/ {0:N2}'}" Width="110"/>
+                <DataGridTextColumn Header="Stock" Binding="{Binding UnidadesEnExistencia}" Width="85"/>
+              </DataGrid.Columns>
+            </DataGrid>
+          </Border>
+
+          <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,14,0,0">
+            <Button Classes="primary" Content="Editar" Command="{Binding EditarCommand}" CommandParameter="{Binding ProductoSeleccionado}" MinWidth="95" HorizontalContentAlignment="Center"/>
+            <Button Classes="danger" Content="Eliminar" Command="{Binding EliminarCommand}" CommandParameter="{Binding ProductoSeleccionado}" MinWidth="95" HorizontalContentAlignment="Center"/>
+          </StackPanel>
+        </Grid>
+      </Border>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:NeptunoApp.ViewModels" xmlns:m="using:NeptunoApp.Models"
+             x:Class="NeptunoApp.Views.PedidosView" x:DataType="vm:PedidosViewModel">
+  <Grid RowDefinitions="Auto,*" Margin="20,22">
+    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,18">
+      <StackPanel>
+        <TextBlock Text="Mantenimiento de pedidos" FontSize="26" FontWeight="Bold"/>
+        <TextBlock Text="Cabecera del pedido y relaciones (con eliminación lógica)" Foreground="#64748B"/>
+      </StackPanel>
+      <Button Grid.Column="1" Classes="primary" Content="Actualizar" Command="{Binding CargarCommand}"/>
+    </Grid>
+
+    <Grid Grid.Row="1" ColumnDefinitions="340,*" ColumnSpacing="18">
+      <!-- Tarjeta de Formulario -->
+      <Border Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="18">
+        <ScrollViewer>
+          <StackPanel Spacing="9">
+            <TextBlock Text="Datos del pedido" FontSize="18" FontWeight="Bold" Margin="0,0,0,4"/>
+            
+            <TextBlock Text="Cliente" FontWeight="SemiBold" Foreground="#334155"/>
+            <ComboBox ItemsSource="{Binding Clientes}" SelectedItem="{Binding Cliente}" HorizontalAlignment="Stretch">
+              <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="m:Cliente">
+                  <TextBlock Text="{Binding Empresa}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Empleado" FontWeight="SemiBold" Foreground="#334155"/>
+            <ComboBox ItemsSource="{Binding Empleados}" SelectedItem="{Binding Empleado}" HorizontalAlignment="Stretch">
+              <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="m:Empleado">
+                  <TextBlock Text="{Binding NombreCompleto}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Transportista" FontWeight="SemiBold" Foreground="#334155"/>
+            <ComboBox ItemsSource="{Binding Transportistas}" SelectedItem="{Binding Transportista}" HorizontalAlignment="Stretch">
+              <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="m:Transportista">
+                  <TextBlock Text="{Binding CompaniaNombre}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Fecha del pedido *" FontWeight="SemiBold" Foreground="#334155" Margin="0,2,0,0"/>
+            <DatePicker SelectedDate="{Binding FechaPedido}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
+
+            <TextBlock Text="Fecha requerida" FontWeight="SemiBold" Foreground="#334155" Margin="0,2,0,0"/>
+            <DatePicker SelectedDate="{Binding FechaRequerida}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
+
+            <TextBlock Text="Fecha de envío" FontWeight="SemiBold" Foreground="#334155" Margin="0,2,0,0"/>
+            <DatePicker SelectedDate="{Binding FechaEnvio}" HorizontalAlignment="Stretch" DayFormat="dd" MonthFormat="MM" YearFormat="yyyy"/>
+
+            <TextBlock Text="Destinatario" FontWeight="SemiBold" Foreground="#334155"/>
+            <TextBox Text="{Binding Destinatario}"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+              <StackPanel Spacing="4">
+                <TextBlock Text="Ciudad destino" FontWeight="SemiBold" Foreground="#334155"/>
+                <TextBox Text="{Binding CiudadDestino}"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="País destino" FontWeight="SemiBold" Foreground="#334155"/>
+                <TextBox Text="{Binding PaisDestino}"/>
+              </StackPanel>
+            </Grid>
+
+            <TextBlock Text="{Binding Mensaje}" Foreground="#0F766E" TextWrapping="Wrap" FontWeight="SemiBold"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,8,0,0">
+              <Button Content="Nuevo / Cancelar" Command="{Binding NuevoCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+              <Button Grid.Column="1" Classes="orange" Content="Guardar" Command="{Binding GuardarCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+            </Grid>
+          </StackPanel>
+        </ScrollViewer>
+      </Border>
+
+      <!-- Tarjeta de Tabla -->
+      <Border Grid.Column="1" Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="16">
+        <Grid RowDefinitions="Auto,*,Auto">
+          <ProgressBar IsVisible="{Binding EstaCargando}" IsIndeterminate="True" Margin="0,0,0,8"/>
+          
+          <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" ClipToBounds="True">
+            <DataGrid ItemsSource="{Binding Pedidos}" SelectedItem="{Binding Seleccionado}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" CanUserSortColumns="True" CanUserReorderColumns="False" HorizontalScrollBarVisibility="Auto">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Pedido" Binding="{Binding PedidoID}" Width="75"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding FechaPedido, StringFormat='{}{0:dd/MM/yyyy}'}" Width="120"/>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="1.5*" MinWidth="180"/>
+                <DataGridTextColumn Header="Empleado" Binding="{Binding NombreEmpleado}" Width="1.4*" MinWidth="170"/>
+                <DataGridTextColumn Header="Destino" Binding="{Binding CiudadDestino}" Width="1.0*" MinWidth="105"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat='S/ {0:N2}'}" Width="120"/>
+              </DataGrid.Columns>
+            </DataGrid>
+          </Border>
+
+          <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,14,0,0">
+            <Button Classes="primary" Content="Editar" Command="{Binding EditarCommand}" CommandParameter="{Binding Seleccionado}" MinWidth="95" HorizontalContentAlignment="Center"/>
+            <Button Classes="danger" Content="Eliminar" Command="{Binding EliminarCommand}" CommandParameter="{Binding Seleccionado}" MinWidth="95" HorizontalContentAlignment="Center"/>
+          </StackPanel>
+        </Grid>
+      </Border>
+    </Grid>
+  </Grid>
+</UserControl>

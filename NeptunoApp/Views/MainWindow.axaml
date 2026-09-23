@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:NeptunoApp.ViewModels" xmlns:views="using:NeptunoApp.Views"
+        x:Class="NeptunoApp.Views.MainWindow" x:DataType="vm:MainViewModel"
+        Title="Neptuno · Sistema de Gestión Empresarial" Width="1320" Height="840" MinWidth="1080" MinHeight="700" Background="#F1F5F9">
+
+  <Grid ColumnDefinitions="Auto,*">
+    <!-- Barra Lateral Colapsable con Iconos Vectoriales -->
+    <Border Background="#0F172A" Padding="12,20">
+      <Grid RowDefinitions="Auto,Auto,*,Auto">
+        
+        <!-- Header con Logo e Interacción para Colapsar/Expandir -->
+        <Button Background="Transparent" BorderThickness="0" Padding="4" HorizontalAlignment="Stretch" Command="{Binding AlternarBarraLateralCommand}" ToolTip.Tip="Expandir / Contraer menú">
+          <Grid ColumnDefinitions="Auto,*">
+            <Border Width="40" Height="40" CornerRadius="10" Background="#0F766E" HorizontalAlignment="Center" VerticalAlignment="Center">
+              <TextBlock Text="N" Foreground="White" FontWeight="ExtraBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0,0,0" IsVisible="{Binding BarraLateralExpandida}">
+              <TextBlock Text="NEPTUNO" Foreground="White" FontSize="18" FontWeight="Bold" LetterSpacing="0.5"/>
+              <TextBlock Text="Enterprise Suite" Foreground="#64748B" FontSize="11"/>
+            </StackPanel>
+          </Grid>
+        </Button>
+
+        <!-- Etiqueta de Sección (Solo visible al expandir) -->
+        <TextBlock Grid.Row="1" Text="MÓDULOS" Foreground="#64748B" FontSize="10" FontWeight="Bold" Margin="8,26,0,10" IsVisible="{Binding BarraLateralExpandida}"/>
+
+        <!-- Menú de Navegación con Iconos SVG Vectoriales -->
+        <StackPanel Grid.Row="2" Spacing="6" Margin="0,10,0,0">
+          
+          <!-- 1. Productos -->
+          <Button Classes="nav" Classes.active="{Binding MostrarProductos}" Command="{Binding VerProductosCommand}" ToolTip.Tip="Productos">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <PathIcon Data="M20 7l-8-4-8 4 8 4 8-4zm-8 6l-8-4v8l8 4 8-4v-8l-8 4z" Width="18" Height="18" Foreground="White" VerticalAlignment="Center"/>
+              <TextBlock Text="Productos" Margin="12,0,0,0" VerticalAlignment="Center" IsVisible="{Binding BarraLateralExpandida}"/>
+            </StackPanel>
+          </Button>
+
+          <!-- 2. Categorías -->
+          <Button Classes="nav" Classes.active="{Binding MostrarCategorias}" Command="{Binding VerCategoriasCommand}" ToolTip.Tip="Categorías">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <PathIcon Data="M4 4h7v7H4V4zm10 0h6v7h-6V4zM4 14h7v6H4v-6zm10 0h6v6h-6v-6z" Width="18" Height="18" Foreground="White" VerticalAlignment="Center"/>
+              <TextBlock Text="Categorías" Margin="12,0,0,0" VerticalAlignment="Center" IsVisible="{Binding BarraLateralExpandida}"/>
+            </StackPanel>
+          </Button>
+
+          <!-- 3. Proveedores -->
+          <Button Classes="nav" Classes.active="{Binding MostrarProveedores}" Command="{Binding VerProveedoresCommand}" ToolTip.Tip="Proveedores">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <PathIcon Data="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" Width="18" Height="18" Foreground="White" VerticalAlignment="Center"/>
+              <TextBlock Text="Proveedores" Margin="12,0,0,0" VerticalAlignment="Center" IsVisible="{Binding BarraLateralExpandida}"/>
+            </StackPanel>
+          </Button>
+
+          <!-- 4. Pedidos -->
+          <Button Classes="nav" Classes.active="{Binding MostrarPedidos}" Command="{Binding VerPedidosCommand}" ToolTip.Tip="Pedidos">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <PathIcon Data="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.16 14.26l.04.12c.11.36.44.62.8.62H17v-2H8.42l-.9-1.89-1.34-2.82L5.27 6H2V4h4.27l1.07 2.25L9.1 10h6.8l3.1-5.59 1.74.97-3.1 5.59A2 2 0 0 1 15.9 12H8.1l-.94 1.7-.01.06.01.5z" Width="18" Height="18" Foreground="White" VerticalAlignment="Center"/>
+              <TextBlock Text="Pedidos" Margin="12,0,0,0" VerticalAlignment="Center" IsVisible="{Binding BarraLateralExpandida}"/>
+            </StackPanel>
+          </Button>
+
+          <!-- 5. Reportes -->
+          <Button Classes="nav" Classes.active="{Binding MostrarReportes}" Command="{Binding VerReportesCommand}" ToolTip.Tip="Reportes por fechas">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <PathIcon Data="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-5h2v5zm4 0h-2v-9h2v9zm4 0h-2v-4h2v4z" Width="18" Height="18" Foreground="White" VerticalAlignment="Center"/>
+              <TextBlock Text="Reportes" Margin="12,0,0,0" VerticalAlignment="Center" IsVisible="{Binding BarraLateralExpandida}"/>
+            </StackPanel>
+          </Button>
+
+        </StackPanel>
+
+        <!-- Botón Inferior para Alternar Barra Lateral (Solo Icono 3 Rayas) -->
+        <Button Grid.Row="3" Classes="nav" Command="{Binding AlternarBarraLateralCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" ToolTip.Tip="Expandir / Contraer menú" Padding="12,10">
+          <PathIcon Data="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" Width="20" Height="20" Foreground="#94A3B8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Button>
+      </Grid>
+    </Border>
+
+    <!-- Contenido Principal -->
+    <Grid Grid.Column="1">
+      <Grid IsVisible="{Binding MostrarProductos}"><views:ProductosView DataContext="{Binding Productos}"/></Grid>
+      <Grid IsVisible="{Binding MostrarCategorias}"><views:CategoriasView DataContext="{Binding Categorias}"/></Grid>
+      <Grid IsVisible="{Binding MostrarProveedores}"><views:ProveedoresView DataContext="{Binding Proveedores}"/></Grid>
+      <Grid IsVisible="{Binding MostrarPedidos}"><views:PedidosView DataContext="{Binding Pedidos}"/></Grid>
+      <Grid IsVisible="{Binding MostrarReportes}"><views:ReportesView DataContext="{Binding Reportes}"/></Grid>
+    </Grid>
+  </Grid>
+</Window>
